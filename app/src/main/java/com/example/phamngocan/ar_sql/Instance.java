@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class Instance {
     public static ArrayList<String> columnNV = new ArrayList<>();
+    public static ArrayList<String> chiNhanhList = new ArrayList<>();
     public static String dbName = "NGANHANG";
-    public static String serverport="21111";
+    public static String serverport="20000";
     public static String instance= "MSSQLSERVER";
     public static String serverip="192.168.56.1"+":"+serverport;
     public static String user = "sa";

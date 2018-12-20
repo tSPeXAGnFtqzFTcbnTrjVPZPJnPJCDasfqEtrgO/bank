@@ -13,6 +13,13 @@ public class DAOManager {
     // Database Connection
     Connection conn = null;
     Statement stmt = null;
+    private static DAOManager daoManager = null;
+    public static DAOManager getInstance(){
+        if(daoManager == null){
+            daoManager = new DAOManager();
+        }
+        return daoManager;
+    }
     public DAOManager() {
         try {
             //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -39,6 +46,7 @@ public class DAOManager {
     public void close(){
         if(this.conn!=null){
             try {
+                stmt.close();
                 conn.close();
             } catch (SQLException e) {
                 e.printStackTrace();
