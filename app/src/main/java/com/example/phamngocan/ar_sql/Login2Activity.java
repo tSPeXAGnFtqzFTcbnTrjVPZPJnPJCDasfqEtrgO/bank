@@ -1,5 +1,6 @@
 package com.example.phamngocan.ar_sql;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -104,7 +105,7 @@ public class Login2Activity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "Đăng nhập thành công",
                         Toast.LENGTH_SHORT).show();
-                //new asyncQuery().execute("SELECT * FROM [dbo].KhachHang");
+                new asyncQuery().execute("SELECT * FROM [dbo].KhachHang");
                 new asyncGetInfor().execute();
             }
         }
@@ -164,12 +165,12 @@ public class Login2Activity extends AppCompatActivity {
                         Instance.userName = rs.getString(1);
                         Instance.hoten = rs.getString(2);
                         Instance.nhom = rs.getString(3);
-                        Log.d("AAA", "getinfor: " + Instance.userName + " " + Instance.hoten + " " +
-                                Instance.nhom);
+                        Log.d("AAA", "getinfor: "+ Instance.hoten);
                     }
                 } catch (SQLException e) {
                     Log.d("AAA", "error asycn call: " + e.getMessage());
                 }
+               startActivity(new Intent(Login2Activity.this,ActionActivity.class));
             }
         }
     }

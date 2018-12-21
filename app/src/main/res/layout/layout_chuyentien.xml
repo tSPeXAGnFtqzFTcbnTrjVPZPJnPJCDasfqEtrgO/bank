@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintVertical_chainStyle="packed">
+
+
+    <TextView
+        android:id="@+id/txtvTKchuyen"
+        android:text="Tài khoản chuyển"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txtvTKnhan"
+        app:layout_constraintRight_toLeftOf="@id/editTKchuyen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="5"/>
+    <EditText
+        android:id="@+id/editTKchuyen"
+        android:maxLength="9"
+        app:layout_constraintTop_toTopOf="@id/txtvTKchuyen"
+        app:layout_constraintLeft_toRightOf="@id/txtvTKchuyen"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/txtvTKchuyen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="5"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/txtvTKnhan"
+        android:text="Tài khoản nhận"
+        android:textAlignment="center"
+        android:textSize="20sp"
+
+        app:layout_constraintTop_toBottomOf="@id/txtvTKchuyen"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/txtvSotien"
+        app:layout_constraintRight_toLeftOf="@id/editTKnhan"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="5"/>
+    <EditText
+        android:id="@+id/editTKnhan"
+        android:maxLength="9"
+        app:layout_constraintTop_toTopOf="@id/txtvTKnhan"
+        app:layout_constraintLeft_toRightOf="@id/txtvTKnhan"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/txtvTKnhan"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/txtvSotien"
+        android:text="Số tiền"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/txtvTKnhan"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnOk"
+        app:layout_constraintRight_toLeftOf="@id/editSotien"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="5"/>
+    <EditText
+        android:id="@+id/editSotien"
+        android:maxLength="8"
+        app:layout_constraintTop_toTopOf="@id/txtvSotien"
+        app:layout_constraintLeft_toRightOf="@id/txtvSotien"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/txtvSotien"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:inputType="number"/>
+
+    <Button
+        android:id="@+id/btnOk"
+        android:text="Xác Nhận"
+        app:layout_constraintTop_toBottomOf="@id/txtvSotien"
+        app:layout_constraintBottom_toBottomOf="@id/guide"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="4"/>
+    <android.support.constraint.Guideline
+        android:id="@+id/guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5"/>
+    <ProgressBar
+        android:id="@+id/progressBasr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+</android.support.constraint.ConstraintLayout>

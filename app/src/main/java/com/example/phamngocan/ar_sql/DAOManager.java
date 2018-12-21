@@ -12,8 +12,8 @@ import java.sql.Statement;
 public class DAOManager {
 
     // Database Connection
-    Connection conn = null;
-    Statement stmt = null;
+    public Connection conn = null;
+    public Statement stmt = null;
     private static DAOManager daoManager = null;
     public static DAOManager getInstance(){
         if(daoManager == null){
