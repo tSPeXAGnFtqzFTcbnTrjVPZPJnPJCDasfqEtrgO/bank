@@ -1,5 +1,6 @@
 package com.example.phamngocan.ar_sql;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -41,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         initFile();
+        setUpData();
         //action();
+    }
+
+    private void setUpData(){
+        new asyncStatement().execute("SELECT * FROM [dbo].ChiNhanh");
     }
 
     private void init() {
@@ -134,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 Log.d("AAA", "async backgr");
                 //  preparedStatements[0].execute();
-
+                Log.d("AAA","async stmt: " + daoManager.stmt);
                 ResultSet resultSet = daoManager.stmt.executeQuery(query[0]);
                 //  daoManager.conn.commit();
                 return resultSet;
@@ -159,14 +165,13 @@ public class MainActivity extends AppCompatActivity {
                     int k = 0;
                     while (resultSet.next()) {
                         try {
-
-                            //                         Log.d("AAA","post exec: " + k++);
-                            //                        Log.i("AAA", resultSet.getString(EnumTableNV.TEN.toString()));
-                            //                           Log.i("AAA", resultSet.getString(EnumTableNV.MACN.toString()));
+                            Log.d("AAA",resultSet.getString(1));
+                            Instance.chiNhanhList.add(resultSet.getString(1));
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
+                    new asyncClose().execute();
                 }
 
             } catch (SQLException sqlEx) {
@@ -207,11 +212,11 @@ public class MainActivity extends AppCompatActivity {
 
                 if (resultSet != null) {
                    // rs=resultSet;
-                    writeFile();
+                 //   writeFile();
 
                     while (resultSet.next()) {
                         try {
-                            Log.i("AAA", "call: "+ resultSet.getString(2));
+                            Log.i("AAA", "call: "+ resultSet.getString(1));
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
@@ -224,6 +229,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    class asyncClose extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            daoManager.close();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            startActivity(new Intent(MainActivity.this,Login2Activity.class));
+        }
+    }
     class async extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -237,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Log.d("AAA", "" + daoManager);
-            action();
+           // action();
         }
     }
 }
