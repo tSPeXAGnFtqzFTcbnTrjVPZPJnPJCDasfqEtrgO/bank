@@ -6,18 +6,139 @@
     app:layout_constraintVertical_chainStyle="packed"
     android:paddingBottom="5dp">
 
+    <ProgressBar
+        android:id="@+id/progressBasr"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"/>
     <android.support.constraint.ConstraintLayout
         android:id="@+id/groupControl"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/groupTitle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="2"
+        android:padding="2dp">
+        <Button
+            android:id="@+id/btnSave"
+            android:text="Lưu"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/btnUpdate"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/btnUpdate"
+            android:text="Cập nhật"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/btnSave"
+            app:layout_constraintRight_toLeftOf="@id/btnRevert"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/btnRevert"
+            android:text="Khôi phục"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/btnUpdate"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </android.support.constraint.ConstraintLayout>
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/groupTitle"
+        app:layout_constraintTop_toBottomOf="@id/groupControl"
         app:layout_constraintBottom_toTopOf="@id/recycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintVertical_weight="2">
+        app:layout_constraintVertical_weight="1">
+        <TextView
+            android:id="@+id/editMaNv"
+            android:text="Mã NV"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/editHoTen"
+
+            android:layout_width="0dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/editHoTen"
+            android:text="Họ tên"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/editMaNv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/editDiaChi"
+
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:layout_width="0dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/editDiaChi"
+            android:text="Địa chỉ"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/editHoTen"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/editPhai"
+
+            android:layout_width="0dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/editPhai"
+            android:text="Phái"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/editDiaChi"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/editSoDT"
+
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+            android:layout_width="0dp"
+            android:layout_height="40dp" />
+
+        <TextView
+            android:id="@+id/editSoDT"
+            android:text="Số DT"
+            android:textAlignment="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/editPhai"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/spinner"
+
+            android:layout_width="0dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:id="@+id/spinner"
+            android:text="Chi nhánh"
+            android:textAlignment="center"
+            app:layout_constraintLeft_toRightOf="@id/editSoDT"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="40dp"/>
+
+
 
     </android.support.constraint.ConstraintLayout>
     <android.support.v7.widget.RecyclerView
-        app:layout_constraintTop_toBottomOf="@id/groupControl"
+        app:layout_constraintTop_toBottomOf="@id/groupTitle"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/recycler"

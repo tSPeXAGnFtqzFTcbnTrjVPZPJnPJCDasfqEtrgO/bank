@@ -3,6 +3,9 @@ package com.example.phamngocan.ar_sql.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.phamngocan.ar_sql.Instance;
 import com.example.phamngocan.ar_sql.R;
@@ -24,7 +28,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
     ArrayList<NhanVien> nhanVienList;
     Context context;
-    int positionModify = -1;
+    boolean isModify = false;
 
     public RecycleAdapter(ArrayList<NhanVien> nhanVienList, Context context) {
         this.nhanVienList = nhanVienList;
@@ -44,16 +48,28 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
     public void onBindViewHolder(@NonNull Holder holder, int position) {
             holder.editHoTen.setText(nhanVienList.get(position).getHoten());
         holder.editDiaChi.setText(nhanVienList.get(position).getDiachi());
-        holder.editMaNv.setText(nhanVienList.get(position).getMacn());
+        holder.editMaNv.setText(nhanVienList.get(position).getManv());
         holder.editPhai.setText(nhanVienList.get(position).getPhai());
         holder.editSoDT.setText(nhanVienList.get(position).getSodt());
+        for(int i=0;i<Instance.chiNhanhList.size();i++){
+            if(Instance.chiNhanhList.get(i).equals(nhanVienList.get(position).getMacn())){
+                holder.spinnerChiNhanh.setSelection(i);
+                break;
+            }
+        }
 
 
-        holder.setEndable(position==positionModify);
-
+        holder.setEndable(isModify);
 
     }
 
+    public void changeStateUpdate(boolean flag){
+        this.isModify = flag;
+        notifyDataSetChanged();
+    }
+    public boolean getModify(){
+        return this.isModify;
+    }
     @Override
     public int getItemCount() {
         return nhanVienList.size();
@@ -87,16 +103,103 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
             viewList.add(spinnerChiNhanh);
 
             actionSpinner();
+            actionChangeEdit();
 
         }
 
         public void setEndable(boolean flag){
+
+            this.editMaNv.setEnabled(false);
+            this.spinnerChiNhanh.setEnabled(false);
+
             this.editHoTen.setEnabled(flag);
             this.editDiaChi.setEnabled(flag);
-            this.editMaNv.setEnabled(flag);
             this.editPhai.setEnabled(flag);
             this.editSoDT.setEnabled(flag);
-            this.spinnerChiNhanh.setEnabled(flag);
+
+        }
+        private void actionChangeEdit(){
+            editHoTen.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Instance.nhanvienList.get(getLayoutPosition()).setHotenT(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            editSoDT.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Instance.nhanvienList.get(getLayoutPosition()).setSodtT(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            editPhai.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Instance.nhanvienList.get(getLayoutPosition()).setPhaiT(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            editMaNv.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Instance.nhanvienList.get(getLayoutPosition()).setManvT(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            editDiaChi.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    Instance.nhanvienList.get(getLayoutPosition()).setDiachiT(s.toString());
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+
         }
         private void actionSpinner(){
             adapterChiNhanh = new ArrayAdapter<>(context, R.layout.item_spinner, Instance.chiNhanhList);
