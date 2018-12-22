@@ -15,6 +15,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.phamngocan.ar_sql.model.KhachHang;
+import com.example.phamngocan.ar_sql.model.NhanVien;
+
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -105,19 +108,22 @@ public class Login2Activity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "Đăng nhập thành công",
                         Toast.LENGTH_SHORT).show();
-                new asyncQuery().execute("SELECT * FROM [dbo].KhachHang");
+                new asyncQueryNhanVien().execute();
+
                 new asyncGetInfor().execute();
             }
         }
     }
 
-    class asyncQuery extends AsyncTask<String, Void, ResultSet> {
+
+    class asyncQueryKhachHang extends AsyncTask<Void, Void, ResultSet> {
 
         @Override
-        protected ResultSet doInBackground(String... strings) {
+        protected ResultSet doInBackground(Void... voids) {
             ResultSet rs = null;
             try {
-                rs = daoManager.stmt.executeQuery(strings[0]);
+
+                rs = daoManager.stmt.executeQuery("SELECT * FROM [dbo].KhachHang");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -126,12 +132,65 @@ public class Login2Activity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ResultSet resultSet) {
+
             if (resultSet != null) {
 
+                Instance.khachHangList.clear();
                 try {
                     while (resultSet.next()) {
-                        Log.d("AAA", "async query: " + resultSet.getString(1));
+                        String cmnd,hoten,diachi,phai,sodt,macn;
+                        cmnd = resultSet.getString(1);
+                        hoten = resultSet.getString(2) +" "+ resultSet.getString(3);
+                        diachi = resultSet.getString(4);
+                        phai = resultSet.getString(5);
+                        sodt = resultSet.getString(6);
+                        macn = resultSet.getString(7);
+                        Instance.khachHangList.add(new KhachHang(cmnd,hoten,diachi,phai,sodt,macn));
+                        Log.d("AAA","khachhang: " + Instance.khachHangList.get(Instance.khachHangList.size()-1).getCmnd());
                     }
+                } catch (SQLException e) {
+                    Log.e("AAA", "error async query:" + e.getMessage());
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
+
+    class asyncQueryNhanVien extends AsyncTask<Void, Void, ResultSet> {
+
+        @Override
+        protected ResultSet doInBackground(Void... voids) {
+            ResultSet rs = null;
+            try {
+
+                rs = daoManager.stmt.executeQuery("SELECT * FROM [dbo].NhanVien");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return rs;
+        }
+
+        @Override
+        protected void onPostExecute(ResultSet resultSet) {
+
+            if (resultSet != null) {
+
+                Instance.nhanvienList.clear();
+                try {
+                    while (resultSet.next()) {
+                        String hoten,diachi,manv,phai,sodt,macn;
+                        manv = resultSet.getString(1);
+                        hoten = resultSet.getString(2) +" "+ resultSet.getString(3);
+                        diachi = resultSet.getString(4);
+                        phai = resultSet.getString(5);
+                        sodt = resultSet.getString(6);
+                        macn = resultSet.getString(7);
+                        Instance.nhanvienList.add(new NhanVien(hoten,diachi,manv,phai,sodt,macn));
+                        Log.d("AAA","NhanVien: " + Instance.nhanvienList.get(Instance.nhanvienList.size()-1).toString());
+
+                    }
+                      new asyncQueryKhachHang().execute();
                 } catch (SQLException e) {
                     Log.e("AAA", "error async query:" + e.getMessage());
                     e.printStackTrace();
