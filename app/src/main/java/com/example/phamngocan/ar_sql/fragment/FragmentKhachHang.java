@@ -108,12 +108,21 @@ public class FragmentKhachHang extends Fragment {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            for(int i=0;i<Instance.nhanvienList.size();i++) {
+            for(int i=0;i<Instance.khachHangList.size();i++) {
                 try {
-                    Log.d("AAA","manv: " + Instance.nhanvienList.get(i).getManv());
+                    Log.d("AAA","manv: " + Instance.khachHangList.get(i).getCmnd());
                     CallableStatement callableStatement = daoManager.conn.prepareCall(
                             "call [dbo].updkhachhang(?,?,?,?,?,?,?)"
                     );
+
+                    Log.d("AAA","cmnd: "+ Instance.khachHangList.get(i).getCmnd());
+                    Log.d("AAA", Instance.khachHangList.get(i).getHo());
+                    Log.d("AAA", Instance.khachHangList.get(i).getTen());
+                    Log.d("AAA", Instance.khachHangList.get(i).getDiachi());
+                    Log.d("AAA", Instance.khachHangList.get(i).getPhai());
+                    Log.d("AAA", Instance.khachHangList.get(i).getSodt());
+                    Log.d("AAA","macn: " + Instance.khachHangList.get(i).getMacn());
+
                     callableStatement.setString(1, Instance.khachHangList.get(i).getCmnd());
                     callableStatement.setString(2, Instance.khachHangList.get(i).getHo());
                     callableStatement.setString(3, Instance.khachHangList.get(i).getTen());
