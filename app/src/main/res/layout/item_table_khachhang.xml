@@ -7,7 +7,8 @@
 
 
     <EditText
-        android:id="@+id/editMaNv"
+        android:id="@+id/editCMND"
+        android:maxLength="10"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,8 +19,9 @@
 
     <EditText
         android:id="@+id/editHoTen"
+        android:maxLength="50"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/editMaNv"
+        app:layout_constraintLeft_toRightOf="@id/editCMND"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/editDiaChi"
 
@@ -29,6 +31,7 @@
 
     <EditText
         android:id="@+id/editDiaChi"
+        android:maxLength="100"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/editHoTen"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +42,7 @@
 
     <EditText
         android:id="@+id/editPhai"
+        android:maxLength="3"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/editDiaChi"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,6 +55,7 @@
 
     <EditText
         android:id="@+id/editSoDT"
+        android:maxLength="12"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/editPhai"
         app:layout_constraintBottom_toBottomOf="parent"

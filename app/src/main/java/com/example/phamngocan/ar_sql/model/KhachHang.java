@@ -21,6 +21,31 @@ public class KhachHang {
 
     }
 
+
+    public boolean checkNull(){
+        if(this.hotenT.equals("") || this.diachiT.equals("") || this.cmndT.equals("") || this.macnT.equals("")
+                || this.sodtT.equals("")){
+            return true;
+        }
+        return false;
+    }
+    public String getHo(){
+        return this.hoten.split(" ")[0];
+    }
+    public String getTen(){
+        String[] st = this.hoten.split(" ");
+        if(st.length == 1) return st[0];
+        else return this.hoten.substring(st[0].length()+2);
+    }
+    public void update(){
+        this.hoten = this.hotenT;
+        this.diachi = this.diachiT;
+        this.cmnd = this.cmndT;
+        this.phai = this.phaiT;
+        this.sodt = this.sodtT;
+        this.macn = this.macnT;
+    }
+
     public String getCmnd() {
         return cmnd;
     }

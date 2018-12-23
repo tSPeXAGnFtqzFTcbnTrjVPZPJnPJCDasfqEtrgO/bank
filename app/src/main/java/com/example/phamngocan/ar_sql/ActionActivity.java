@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.phamngocan.ar_sql.adapter.ViewPagerAdapter;
 import com.example.phamngocan.ar_sql.fragment.FragmentChuyenTien;
+import com.example.phamngocan.ar_sql.fragment.FragmentKhachHang;
 import com.example.phamngocan.ar_sql.fragment.FragmentNhanVien;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class ActionActivity extends AppCompatActivity {
 
         fragments.add(new FragmentChuyenTien());
         fragments.add(new FragmentNhanVien());
+        fragments.add(new FragmentKhachHang());
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);

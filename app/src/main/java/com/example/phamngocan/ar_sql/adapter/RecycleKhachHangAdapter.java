@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,25 +12,24 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.phamngocan.ar_sql.Instance;
 import com.example.phamngocan.ar_sql.R;
-import com.example.phamngocan.ar_sql.model.NhanVien;
+import com.example.phamngocan.ar_sql.model.KhachHang;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
+public class RecycleKhachHangAdapter extends RecyclerView.Adapter<RecycleKhachHangAdapter.Holder>  {
 
-    ArrayList<NhanVien> nhanVienList;
+    ArrayList<KhachHang> khachHangList;
     Context context;
     boolean isModify = false;
 
-    public RecycleAdapter(ArrayList<NhanVien> nhanVienList, Context context) {
-        this.nhanVienList = nhanVienList;
+    public RecycleKhachHangAdapter(ArrayList<KhachHang> khachHangList, Context context) {
+        this.khachHangList = khachHangList;
         this.context = context;
 
     }
@@ -39,20 +37,20 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_table,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_table_khachhang,parent,false);
 
         return new Holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-            holder.editHoTen.setText(nhanVienList.get(position).getHoten());
-        holder.editDiaChi.setText(nhanVienList.get(position).getDiachi());
-        holder.editMaNv.setText(nhanVienList.get(position).getManv());
-        holder.editPhai.setText(nhanVienList.get(position).getPhai());
-        holder.editSoDT.setText(nhanVienList.get(position).getSodt());
+        holder.editHoTen.setText(khachHangList.get(position).getHoten());
+        holder.editDiaChi.setText(khachHangList.get(position).getDiachi());
+        holder.editCMND.setText(khachHangList.get(position).getCmnd());
+        holder.editPhai.setText(khachHangList.get(position).getPhai());
+        holder.editSoDT.setText(khachHangList.get(position).getSodt());
         for(int i=0;i<Instance.chiNhanhList.size();i++){
-            if(Instance.chiNhanhList.get(i).equals(nhanVienList.get(position).getMacn())){
+            if(Instance.chiNhanhList.get(i).equals(khachHangList.get(position).getMacn())){
                 holder.spinnerChiNhanh.setSelection(i);
                 break;
             }
@@ -72,7 +70,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
     }
     @Override
     public int getItemCount() {
-        return nhanVienList.size();
+        return khachHangList.size();
     }
 
     class Holder extends RecyclerView.ViewHolder{
@@ -80,8 +78,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
         EditText editHoTen;
         @BindView(R.id.editDiaChi)
         EditText editDiaChi;
-        @BindView(R.id.editMaNv)
-        EditText editMaNv;
+        @BindView(R.id.editCMND)
+        EditText editCMND;
         @BindView(R.id.editPhai)
         EditText editPhai;
         @BindView(R.id.editSoDT)
@@ -97,7 +95,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
             ButterKnife.bind(this,itemView);
             viewList.add(editDiaChi);
             viewList.add(editHoTen);
-            viewList.add(editMaNv);
+            viewList.add(editCMND);
             viewList.add(editPhai);
             viewList.add(editSoDT);
             viewList.add(spinnerChiNhanh);
@@ -109,7 +107,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
         public void setEndable(boolean flag){
 
-            this.editMaNv.setEnabled(false);
+            this.editCMND.setEnabled(false);
             this.spinnerChiNhanh.setEnabled(false);
 
             this.editHoTen.setEnabled(flag);
@@ -127,7 +125,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    Instance.nhanvienList.get(getLayoutPosition()).setHotenT(s.toString());
+                    Instance.khachHangList.get(getLayoutPosition()).setHotenT(s.toString());
                 }
 
                 @Override
@@ -143,7 +141,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    Instance.nhanvienList.get(getLayoutPosition()).setSodtT(s.toString());
+                    Instance.khachHangList.get(getLayoutPosition()).setSodtT(s.toString());
                 }
 
                 @Override
@@ -159,7 +157,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    Instance.nhanvienList.get(getLayoutPosition()).setPhaiT(s.toString());
+                    Instance.khachHangList.get(getLayoutPosition()).setPhaiT(s.toString());
                 }
 
                 @Override
@@ -167,7 +165,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
                 }
             });
-            editMaNv.addTextChangedListener(new TextWatcher() {
+            editCMND.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -175,7 +173,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    Instance.nhanvienList.get(getLayoutPosition()).setManvT(s.toString());
+                    Instance.khachHangList.get(getLayoutPosition()).setCmndT(s.toString());
                 }
 
                 @Override
@@ -191,7 +189,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    Instance.nhanvienList.get(getLayoutPosition()).setDiachiT(s.toString());
+                    Instance.khachHangList.get(getLayoutPosition()).setDiachiT(s.toString());
                 }
 
                 @Override
@@ -210,7 +208,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
             spinnerChiNhanh.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    nhanVienList.get(getLayoutPosition()).setMacnT(Instance.chiNhanhList.get(position));
+                    khachHangList.get(getLayoutPosition()).setMacnT(Instance.chiNhanhList.get(position));
                 }
 
                 @Override
@@ -221,4 +219,5 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.Holder>{
 
         }
     }
+
 }

@@ -143,8 +143,8 @@ public class Login2Activity extends AppCompatActivity {
                         hoten = resultSet.getString(2) +" "+ resultSet.getString(3);
                         diachi = resultSet.getString(4);
                         phai = resultSet.getString(5);
-                        sodt = resultSet.getString(6);
-                        macn = resultSet.getString(7);
+                        sodt = resultSet.getString(7);
+                        macn = resultSet.getString(8);
                         Instance.khachHangList.add(new KhachHang(cmnd,hoten,diachi,phai,sodt,macn));
                         Log.d("AAA","khachhang: " + Instance.khachHangList.get(Instance.khachHangList.size()-1).getCmnd());
                     }
