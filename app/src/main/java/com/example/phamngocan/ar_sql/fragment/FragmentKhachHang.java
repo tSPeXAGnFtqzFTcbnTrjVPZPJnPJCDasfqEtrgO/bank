@@ -114,7 +114,7 @@ public class FragmentKhachHang extends Fragment {
                     CallableStatement callableStatement = daoManager.conn.prepareCall(
                             "call [dbo].updkhachhang(?,?,?,?,?,?,?)"
                     );
-
+/*
                     Log.d("AAA","cmnd: "+ Instance.khachHangList.get(i).getCmnd());
                     Log.d("AAA", Instance.khachHangList.get(i).getHo());
                     Log.d("AAA", Instance.khachHangList.get(i).getTen());
@@ -122,7 +122,7 @@ public class FragmentKhachHang extends Fragment {
                     Log.d("AAA", Instance.khachHangList.get(i).getPhai());
                     Log.d("AAA", Instance.khachHangList.get(i).getSodt());
                     Log.d("AAA","macn: " + Instance.khachHangList.get(i).getMacn());
-
+*/
                     callableStatement.setString(1, Instance.khachHangList.get(i).getCmnd());
                     callableStatement.setString(2, Instance.khachHangList.get(i).getHo());
                     callableStatement.setString(3, Instance.khachHangList.get(i).getTen());

@@ -2,6 +2,7 @@ package com.example.phamngocan.ar_sql;
 
 import com.example.phamngocan.ar_sql.model.KhachHang;
 import com.example.phamngocan.ar_sql.model.NhanVien;
+import com.example.phamngocan.ar_sql.model.TaiKhoan;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,12 @@ public class Instance {
     public static ArrayList<String> chiNhanhList = new ArrayList<>();
     public static ArrayList<NhanVien> nhanvienList = new ArrayList<>();
     public static ArrayList<KhachHang> khachHangList = new ArrayList<>();
+    public static ArrayList<TaiKhoan> taiKhoanList = new ArrayList<>();
+    public static ArrayList<TaiKhoan> taiKhoanBenThanhList = new ArrayList<>();
+    public static ArrayList<TaiKhoan> taiKhoanTanDinhList = new ArrayList<>();
+
     public static String nhom = "";
+    public static String chinhanh = "";
     public static String userName = "",hoten="";
     public static String[] port = {"20000","20001","20002"};
 

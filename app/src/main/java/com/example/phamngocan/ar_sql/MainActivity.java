@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.example.phamngocan.ar_sql.SQLite.EnumTableNV;
+import com.example.phamngocan.ar_sql.model.TaiKhoan;
 
 import java.io.File;
 import java.sql.CallableStatement;
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("AAA", "post exec: " + resultSet.getRow());
                   //  writeFile();
 
-                    int k = 0;
+                    Instance.chiNhanhList.clear();
                     while (resultSet.next()) {
                         try {
                             Log.d("AAA",resultSet.getString(1));
@@ -171,12 +172,52 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    new asyncClose().execute();
+                    new asyncTaiKhoan().execute();
+
                 }
 
             } catch (SQLException sqlEx) {
                 Log.e("AAA", "async sql exception: " + sqlEx.getMessage());
             }
+        }
+    }
+    class asyncTaiKhoan extends AsyncTask<Void,Void,ResultSet>{
+
+        @Override
+        protected ResultSet doInBackground(Void... voids) {
+            ResultSet rs = null;
+            try {
+                rs = daoManager.stmt.executeQuery("SELECT * FROM [dbo].TaiKhoan");
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                Log.d("AAA","error async taikhoan: " + e.getMessage());
+            }
+            return rs;
+        }
+
+        @Override
+        protected void onPostExecute(ResultSet resultSet) {
+            if(resultSet!=null){
+                try {
+                    Instance.taiKhoanList.clear();
+                    while (resultSet.next()) {
+                        String sotk,cmnd,macn;
+                        String soTien;
+                        sotk = resultSet.getString(1);
+                        cmnd = resultSet.getString(2);
+                        soTien = resultSet.getString(3);
+                        macn = resultSet.getString(4);
+                        Instance.taiKhoanList.add(new TaiKhoan(sotk,cmnd,macn,soTien));
+                        if(macn.charAt(0)=='B') Instance.taiKhoanBenThanhList.add(new TaiKhoan(sotk,cmnd,macn,soTien));
+                        else Instance.taiKhoanTanDinhList.add(new TaiKhoan(sotk,cmnd,macn,soTien));
+                        Log.d("AAA","taikhoan: " + soTien);
+                    }
+                }catch (SQLException e){
+                    Log.d("AAA","error async tk postex: " + e.getMessage());
+                }
+            }
+            new asyncClose().execute();
         }
     }
 

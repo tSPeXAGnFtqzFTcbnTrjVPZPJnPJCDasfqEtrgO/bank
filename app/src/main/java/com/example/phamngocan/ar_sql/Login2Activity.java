@@ -63,11 +63,12 @@ public class Login2Activity extends AppCompatActivity {
         adapterChiNhanh.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerChiNhanh.setAdapter(adapterChiNhanh);
 
-
+        Instance.chinhanh = Instance.chiNhanhList.get(0);
         spinnerChiNhanh.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Instance.serverport = Instance.port[position + 1];
+                Instance.chinhanh = Instance.chiNhanhList.get(position);
             }
 
             @Override
