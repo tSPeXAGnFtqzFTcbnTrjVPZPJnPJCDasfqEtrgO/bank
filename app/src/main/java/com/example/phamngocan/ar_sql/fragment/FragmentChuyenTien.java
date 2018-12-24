@@ -83,11 +83,11 @@ public class FragmentChuyenTien extends Fragment {
             this.tkNhan = tkNhan;
             this.sotienString = sotienString;
             while (this.tkChuyen.length()<9){
-                Log.d("AAA",this.tkChuyen.length()+" chuyen");
+                //Log.d("AAA",this.tkChuyen.length()+" chuyen");
                 this.tkChuyen = this.tkChuyen.concat(" ");
             }
             while(this.tkNhan.length()<9){
-                Log.d("AAA",this.tkNhan.length()+" nhan");
+                //Log.d("AAA",this.tkNhan.length()+" nhan");
                 this.tkNhan = this.tkNhan.concat(" ");
             }
             this.sotienString = this.sotienString.trim();
@@ -104,7 +104,7 @@ public class FragmentChuyenTien extends Fragment {
                 callableStatement.setInt(3,sotien);
                 callableStatement.setString(4,Instance.userName);
 
-                Log.d("AAA","before exec 1");
+                Log.d("AAA","before exec 1_"+tkChuyen+"_"+tkNhan+"_");
                 callableStatement.execute();
                 Log.d("AAA","before exec 2");
             } catch (SQLException e) {
