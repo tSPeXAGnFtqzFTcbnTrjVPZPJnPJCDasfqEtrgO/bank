@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
 
 public class FragmentTaiKhoan extends Fragment {
 
-    @BindView(R.id.progressBasr)
+    //@BindView(R.id.progressBasr)
     private static ProgressBar progressBar;
     @BindView(R.id.spinnerChiNhanh)
     Spinner spinnerChiNhanh;
@@ -70,6 +70,8 @@ public class FragmentTaiKhoan extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.layout_taikhoan, container, false);
         ButterKnife.bind(this, view);
+        progressBar = view.findViewById(R.id.progressBasr);
+
         init();
         action();
         initDialog();
@@ -79,6 +81,7 @@ public class FragmentTaiKhoan extends Fragment {
     private void init() {
 
         context = getContext();
+
 
         spinnerList.add("Tất cả");
         spinnerList.addAll(Instance.chiNhanhList);

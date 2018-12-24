@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/txtvSoDuDau"
+        android:text="Số dư đầu"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/txtvNgay"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/txtvNgay"
+        android:text="Ngày"
+        app:layout_constraintTop_toTopOf="@id/txtvSoDuDau"
+        app:layout_constraintLeft_toRightOf="@id/txtvSoDuDau"
+        app:layout_constraintBottom_toBottomOf="@id/txtvSoDuDau"
+        app:layout_constraintRight_toLeftOf="@id/txtvLoaiGD"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/txtvLoaiGD"
+        android:layout_width="0dp"
+        android:text="Loại GD"
+        app:layout_constraintTop_toTopOf="@id/txtvSoDuSau"
+        app:layout_constraintLeft_toRightOf="@id/txtvNgay"
+        app:layout_constraintRight_toLeftOf="@id/txtvSotien"
+        app:layout_constraintBottom_toBottomOf="@id/txtvSoDuDau"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/txtvSotien"
+        android:text="Số tiền"
+        app:layout_constraintTop_toTopOf="@id/txtvSoDuDau"
+        app:layout_constraintLeft_toRightOf="@id/txtvLoaiGD"
+        app:layout_constraintBottom_toBottomOf="@id/txtvSoDuDau"
+        app:layout_constraintRight_toLeftOf="@id/txtvSoDuSau"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/txtvSoDuSau"
+        android:text="Số dư sau"
+        app:layout_constraintTop_toTopOf="@id/txtvSoDuDau"
+        app:layout_constraintLeft_toRightOf="@id/txtvSotien"
+        app:layout_constraintBottom_toBottomOf="@id/txtvSoDuDau"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="match_parent" />
+</android.support.constraint.ConstraintLayout>

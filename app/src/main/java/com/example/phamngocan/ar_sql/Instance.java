@@ -1,5 +1,6 @@
 package com.example.phamngocan.ar_sql;
 
+import com.example.phamngocan.ar_sql.model.GiaoDich;
 import com.example.phamngocan.ar_sql.model.KhachHang;
 import com.example.phamngocan.ar_sql.model.NhanVien;
 import com.example.phamngocan.ar_sql.model.TaiKhoan;
@@ -14,6 +15,7 @@ public class Instance {
     public static ArrayList<TaiKhoan> taiKhoanList = new ArrayList<>();
     public static ArrayList<TaiKhoan> taiKhoanBenThanhList = new ArrayList<>();
     public static ArrayList<TaiKhoan> taiKhoanTanDinhList = new ArrayList<>();
+    public static ArrayList<GiaoDich> giaoDichList = new ArrayList<>();
 
     public static String nhom = "";
     public static String chinhanh = "";

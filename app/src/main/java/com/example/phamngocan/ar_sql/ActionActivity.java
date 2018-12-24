@@ -13,6 +13,7 @@ import com.example.phamngocan.ar_sql.fragment.FragmentChuyenTien;
 import com.example.phamngocan.ar_sql.fragment.FragmentKhachHang;
 import com.example.phamngocan.ar_sql.fragment.FragmentNhanVien;
 import com.example.phamngocan.ar_sql.fragment.FragmentTaiKhoan;
+import com.example.phamngocan.ar_sql.fragment.FragmentThongKeGiaoDich;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,7 @@ public class ActionActivity extends AppCompatActivity {
         fragments.add(new FragmentNhanVien());
         fragments.add(new FragmentKhachHang());
         fragments.add(new FragmentTaiKhoan());
+        fragments.add(new FragmentThongKeGiaoDich());
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
