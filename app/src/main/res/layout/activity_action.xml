@@ -7,9 +7,17 @@
     tools:context=".ActionActivity"
     app:layout_constraintVertical_chainStyle="packed">
 
+    <Button
+        android:id="@+id/btnThoat"
+        android:text="Thoat"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tabLayout"
+        android:layout_width="100dp"
+        android:layout_height="50dp" />
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnThoat"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@id/viewPager"
         android:layout_width="match_parent"

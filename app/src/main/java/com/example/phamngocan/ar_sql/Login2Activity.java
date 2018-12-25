@@ -147,7 +147,7 @@ public class Login2Activity extends AppCompatActivity {
                         sodt = resultSet.getString(7);
                         macn = resultSet.getString(8);
                         Instance.khachHangList.add(new KhachHang(cmnd,hoten,diachi,phai,sodt,macn));
-                        Log.d("AAA","khachhang: " + Instance.khachHangList.get(Instance.khachHangList.size()-1).getCmnd());
+                      //  Log.d("AAA","khachhang: " + Instance.khachHangList.get(Instance.khachHangList.size()-1).getCmnd());
                     }
                 } catch (SQLException e) {
                     Log.e("AAA", "error async query:" + e.getMessage());

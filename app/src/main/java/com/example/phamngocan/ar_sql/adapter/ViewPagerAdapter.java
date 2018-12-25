@@ -27,10 +27,11 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        if(position==0) return "Chuyển tiền";
+        if(position==0) return "Giao dịch";
         if(position==1) return "Nhân viên";
         if(position==2) return "Khách hàng";
         if(position==3) return "Tài Khoản";
+        if(position==4) return "Thống kê";
         return "XX";
     }
 }
